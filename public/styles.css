@@ -46,6 +46,12 @@ header {
     flex-direction: column;
 }
 
+#messages {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+}
+
 .message {
     padding: 10px 15px;
     margin-bottom: 10px;
@@ -57,11 +63,13 @@ header {
 .message.user {
     background-color: var(--user-msg-bg);
     align-self: flex-end;
+    max-width: 80%;
 }
 
 .message.assistant {
     background-color: var(--ai-msg-bg);
     align-self: flex-start;
+    max-width: 80%;
 }
 
 .message.system {

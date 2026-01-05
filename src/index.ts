@@ -18,13 +18,23 @@ export { ChatSessionDO, QuizWorkflow };
 export default {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
-
-    // CORS headers
-    const corsHeaders = {
-      "Access-Control-Allow-Origin": "*",
+    const origin = request.headers.get("Origin");
+    const allowedOrigins = [
+      "http://localhost:8787",
+      "http://127.0.0.1:8787",
+      "https://cf-ai-stateful-tutor.pages.dev"
+    ];
+    
+    const isAllowed = origin && allowedOrigins.includes(origin);
+    const corsHeaders: Record<string, string> = {
       "Access-Control-Allow-Methods": "POST, GET, OPTIONS",
       "Access-Control-Allow-Headers": "Content-Type",
+      "Vary": "Origin",
     };
+
+    if (isAllowed) {
+      corsHeaders["Access-Control-Allow-Origin"] = origin;
+    }
 
     if (request.method === "OPTIONS") {
       return new Response(null, { headers: corsHeaders });
@@ -37,6 +47,9 @@ export default {
             const body = await request.json() as { sessionId: string; message: string };
             if (!body.sessionId || !body.message) {
               return new Response("Missing sessionId or message", { status: 400, headers: corsHeaders });
+            }
+            if (body.message.length > 4000) {
+              return new Response("Message too long (max 4000 chars)", { status: 400, headers: corsHeaders });
             }
     
             // Use idFromName because client uses randomUUID() which is not a 64-char hex ID
