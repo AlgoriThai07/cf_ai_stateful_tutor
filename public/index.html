@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cloudflare AI Tutor</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>AI Tutor</h1>
+            <div class="controls">
+                <button id="new-session-btn" class="btn secondary">New Session</button>
+                <button id="generate-quiz-btn" class="btn primary">Generate Quiz</button>
+            </div>
+        </header>
+
+        <div id="chat-container">
+            <div id="messages">
+                <!-- Messages will appear here -->
+                <div class="message system">
+                    Welcome! I am your AI Tutor using Cloudflare Workers AI (Llama 3.3). 
+                    Ask me anything to start learning.
+                </div>
+            </div>
+        </div>
+
+        <div id="input-area">
+            <textarea id="message-input" placeholder="Type your question here..."></textarea>
+            <button id="send-btn">Send</button>
+        </div>
+    </div>
+
+    <!-- Quiz Modal/Panel -->
+    <div id="quiz-panel" class="hidden">
+        <div class="quiz-header">
+            <h2>Your generated quiz is ready!</h2>
+            <button id="close-quiz-btn">Close</button>
+        </div>
+        <div id="quiz-content">
+            <div id="quiz-render-area"></div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

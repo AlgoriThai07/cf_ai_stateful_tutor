@@ -1,0 +1,243 @@
+:root {
+    --bg-color: #1e1e1e;
+    --chat-bg: #2d2d2d;
+    --primary: #f6821f; /* Cloudflare Orange */
+    --text-color: #e0e0e0;
+    --user-msg-bg: #3c3c3c;
+    --ai-msg-bg: #252526;
+}
+
+body {
+    margin: 0;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    background-color: var(--bg-color);
+    color: var(--text-color);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+}
+
+.container {
+    width: 100%;
+    max-width: 800px;
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+}
+
+header {
+    padding: 1rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid #444;
+}
+
+.controls button {
+    margin-left: 0.5rem;
+    height: 3rem;
+}
+
+#chat-container {
+    flex: 1;
+    overflow-y: auto;
+    padding: 1rem;
+    display: flex;
+    flex-direction: column;
+}
+
+.message {
+    padding: 10px 15px;
+    margin-bottom: 10px;
+    border-radius: 8px;
+    line-height: 1.5;
+    max-width: 80%;
+}
+
+.message.user {
+    background-color: var(--user-msg-bg);
+    align-self: flex-end;
+}
+
+.message.assistant {
+    background-color: var(--ai-msg-bg);
+    align-self: flex-start;
+}
+
+.message.system {
+    align-self: center;
+    font-style: italic;
+    color: #888;
+    background: none;
+    text-align: center;
+}
+
+#input-area {
+    padding: 1rem;
+    background-color: var(--chat-bg);
+    display: flex;
+    gap: 10px;
+}
+
+textarea {
+    flex: 1;
+    padding: 10px;
+    border-radius: 4px;
+    border: 1px solid #444;
+    background-color: #1e1e1e;
+    color: white;
+    resize: none;
+    height: 50px;
+}
+
+button {
+    padding: 0 20px;
+    cursor: pointer;
+    border-radius: 4px;
+    border: none;
+    font-weight: bold;
+    height: 50px;
+}
+
+.btn.primary{
+    background-color: var(--primary);
+    color: white;
+}
+
+#send-btn {
+    background-color: var(--primary);
+    color: white;
+    height: 4.5rem;
+}
+
+.btn.secondary {
+    background-color: #444;
+    color: white;
+}
+
+/* Quiz Panel */
+#quiz-panel {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: #333;
+    padding: 20px;
+    border-radius: 8px;
+    width: 80%;
+    max-height: 80vh;
+    overflow-y: auto;
+    box-shadow: 0 0 20px rgba(0,0,0,0.5);
+    border: 1px solid #555;
+}
+
+.hidden {
+    display: none;
+}
+
+pre {
+    background: #222;
+    padding: 10px;
+    overflow-x: auto;
+}
+
+/* Quiz Styles */
+.quiz-card {
+    background: #3c3c3c;
+    border: 1px solid #444;
+    border-radius: 8px;
+    padding: 1.5rem;
+    margin-bottom: 1.5rem;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+}
+
+.quiz-question {
+    font-size: 1.1rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #f0f0f0;
+}
+
+.quiz-options {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.quiz-option {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem;
+    border: 1px solid #555;
+    border-radius: 6px;
+    cursor: pointer;
+    background: #2d2d2d;
+    transition: background 0.2s, border-color 0.2s;
+}
+
+.quiz-option:hover {
+    background: #383838;
+    border-color: var(--primary);
+}
+
+.quiz-option.selected {
+    background: #4a3c2a;
+    border-color: var(--primary);
+}
+
+.quiz-option input[type="radio"] {
+    margin-right: 0.75rem;
+}
+
+.quiz-input-group {
+    display: flex;
+    gap: 1rem;
+    margin-bottom: 0.5rem;
+}
+
+.quiz-input-group input {
+    flex: 1;
+    padding: 0.75rem;
+    background: #2d2d2d;
+    border: 1px solid #555;
+    color: white;
+    border-radius: 4px;
+}
+
+.quiz-check-btn {
+    padding: 0.75rem 1.5rem;
+    background: var(--primary);
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.quiz-feedback {
+    margin-top: 1rem;
+    padding: 1rem;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    display: none;
+}
+
+.quiz-feedback.correct {
+    display: block;
+    background: #1e3a29;
+    border: 1px solid #2f855a;
+    color: #9ae6b4;
+}
+
+.quiz-feedback.incorrect {
+    display: block;
+    background: #3a1e1e;
+    border: 1px solid #9b2c2c;
+    color: #feb2b2;
+}
+
+.quiz-title {
+    font-size: 1.5rem;
+    margin-bottom: 2rem;
+    text-align: center;
+    color: var(--primary);
+}

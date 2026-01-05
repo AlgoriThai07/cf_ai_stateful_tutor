@@ -1,0 +1,39 @@
+name = "cf-ai-stateful-tutor"
+main = "src/index.ts"
+compatibility_date = "2024-04-03"
+
+# Bindings
+
+[assets]
+directory = "./public"
+binding = "ASSETS"
+
+# Workers AI
+[ai]
+binding = "AI"
+
+# Durable Objects
+[[durable_objects.bindings]]
+name = "CHAT_SESSION"
+class_name = "ChatSessionDO"
+
+[[migrations]]
+tag = "v1"
+new_classes = ["ChatSessionDO"]
+
+# Cloudflare Workflows
+[[workflows]]
+name = "QuizWorkflow"
+binding = "QUIZ_WORKFLOW"
+class_name = "QuizWorkflow"
+
+# KV Namespace for Quiz Results
+# Note: You must generate a real ID for production deploy, but for local dev preview it is automated.
+[[kv_namespaces]]
+binding = "QUIZ_RESULTS"
+id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
+
+# Rules
+[[rules]]
+type = "ESModule"
+globs = ["**/*.js", "**/*.ts"]
