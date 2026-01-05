@@ -19,7 +19,7 @@ class_name = "ChatSessionDO"
 
 [[migrations]]
 tag = "v1"
-new_classes = ["ChatSessionDO"]
+new_sqlite_classes = ["ChatSessionDO"]
 
 # Cloudflare Workflows
 [[workflows]]
@@ -31,7 +31,7 @@ class_name = "QuizWorkflow"
 # Note: You must generate a real ID for production deploy, but for local dev preview it is automated.
 [[kv_namespaces]]
 binding = "QUIZ_RESULTS"
-id = "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx" 
+id = "dd8f3ed76e4b48509b994dc8392e112a" 
 
 # Rules
 [[rules]]

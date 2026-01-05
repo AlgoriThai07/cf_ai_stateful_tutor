@@ -17,7 +17,7 @@ A Cloudflare-native AI chat application that functions as a personal tutor. It m
 -   Cloudflare Wrangler CLI (`npm install -g wrangler`)
 -   A Cloudflare account with Workers AI enabled.
 
-## How to Run Locally
+### How to Run Locally
 
 1.  **Install Dependencies**:
     ```bash
@@ -28,33 +28,23 @@ A Cloudflare-native AI chat application that functions as a personal tutor. It m
     ```bash
     npm run dev
     ```
-    This will start the Wrangler local dev server, simulating Workers, DO, and AI.
+    This starts the full local stack (Worker + Static Frontend + AI) on `http://localhost:8787`.
 
 3.  **Open the App**:
-    Visit the URL provided by Wrangler (usually `http://localhost:8787` for the backend, but since we are serving static assets via Pages, you might need to proxy or just open `public/index.html` directly if just testing UI, BUT for full functionality use `wrangler dev` which can serve the static assets if configured or serve the API).
-    
-    *Correction*: Since this is a combined Worker + Pages architecture, user `wrangler dev` is primarily for the worker. For the simplest local test of the UI connecting to the local worker:
-    1. Run `npm run dev` (starts Worker on port 8787).
-    2. Open `public/index.html` in your browser.
-    3. Note: The `app.js` points to `http://127.0.0.1:8787/api`. Ensure CORS is enabled (it is in `index.ts`).
+    Simply visit **[http://localhost:8787](http://localhost:8787)** in your browser. The frontend is served directly by the Worker.
 
-## How to Deploy
+### How to Deploy
 
 1.  **Login to Cloudflare**:
     ```bash
-    wrangler login
+    npx wrangler login
     ```
 
-2.  **Deploy Worker**:
+2.  **Deploy**:
     ```bash
-    npm run deploy
+    npx wrangler deploy
     ```
-
-3.  **Deploy Frontend (Pages)**:
-    You can deploy the `public` folder to Cloudflare Pages:
-    ```bash
-    npx wrangler pages deploy public --project-name cf-ai-tutor
-    ```
+    This command deploys the Worker, Durable Objects, and uploads the `public/` directory as static assets automatically.
 
 ## Memory & Summarization
 -   **Storage**: Chat history is stored in the `ChatSessionDO` Durable Object.
